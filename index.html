@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ediz — Vitrin</title>
+  <meta name="description" content="Ediz Teknoloji — Akıllı ev otomasyon, güvenlik sistemleri, pil paketleme ve güneş paneli kurulumu. Ediz Design • EdizLab — vitrin web sitesi." />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body data-theme="tech">
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="inner">
+      <a class="brand" href="./index.html" aria-label="Ana sayfa">
+        <!-- LOGO BURAYA (./logo/ediz.png) -->
+        <img id="brandLogo" class="brandLogo" src="./logo/ediz.png" alt="Ediz" />
+      </a>
+
+      <div class="navRight">
+        <div class="navLinks" aria-label="Üst menü">
+          <a class="navLink" href="#about">Hakkımızda</a>
+
+          <div class="dd">
+            <button class="ddBtn" id="servicesBtn" type="button">
+              Hizmetler <span class="chev" aria-hidden="true"></span>
+            </button>
+            <div class="ddPanel" id="servicesPanel" aria-label="Hizmet listesi"></div>
+          </div>
+
+          <a class="navLink" href="#faq">SSS</a>
+          <a class="navLink" href="#contact">İletişim</a>
+        </div>
+
+        <div class="catTabs" role="tablist" aria-label="Kategoriler">
+          <button class="catTab" role="tab" aria-selected="true" data-theme="tech">Ediz Teknoloji</button>
+          <button class="catTab" role="tab" aria-selected="false" data-theme="design">Ediz Design</button>
+          <button class="catTab" role="tab" aria-selected="false" data-theme="lab">EdizLab</button>
+        </div>
+
+        <a class="btn primary" href="#contact">İletişime Geç</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="grid">
+        <div class="card heroCard">
+          <div class="kicker" id="kicker">Ediz Teknoloji</div>
+          <h1 id="headline">Akıllı Enerji ve Güvenlik Çözümleri</h1>
+          <p class="lead" id="lead">
+            Yaşam alanlarını daha güvenli, daha verimli ve daha sürdürülebilir hale getiriyoruz.
+            Akıllı ev otomasyonundan güvenlik sistemlerine, pil paketlemeden güneş paneli kurulumuna kadar uçtan uca kurulum ve destek sunuyoruz.
+          </p>
+
+          <div class="ctaRow">
+            <a class="btn primary" href="#services">Hizmetlere Bak</a>
+            <a class="btn" href="#contact">Teklif Al</a>
+          </div>
+        </div>
+
+        <aside class="card sideCard">
+          <p class="miniTitle">Öne Çıkanlar</p>
+          <p class="miniText">Hızlı keşif • Kurulum • Devreye alma • Teknik destek</p>
+          <div class="pillRow" id="pills">
+            <span class="pill">Profesyonel Ekip</span>
+            <span class="pill">Hızlı & Güvenilir</span>
+            <span class="pill">Yerli Üretim</span>
+            <span class="pill">Teknik Destek</span>
+            <span class="pill">Çevre Dostu</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- SERVICES PREVIEW -->
+    <section class="section" id="services">
+      <div class="sectionHead">
+        <h2 id="servicesTitle">Hizmetler</h2>
+      </div>
+
+      <!-- 4 KUTU -->
+      <div class="cards4">
+        <div class="card tile">
+          <h3 id="c1t">Akıllı Ev Otomasyon Sistemleri</h3>
+          <p id="c1d">
+            Aydınlatma, enerji kontrolü ve otomasyon senaryoları ile yaşam alanlarınızı akıllandırıyoruz.
+            Uzaktan kontrol, zamanlama ve sahaya uygun kurulum desteği.
+          </p>
+          <div class="tag"><span class="spark" aria-hidden="true"></span><span id="c1tag">Akıllı Ev</span></div>
+        </div>
+
+        <div class="card tile">
+          <h3 id="c2t">Güvenlik Sistemleri</h3>
+          <p id="c2d">
+            IP kamera, kayıt ve uzaktan izleme altyapılarıyla ev ve iş yerleri için güvenlik çözümleri.
+            İhtiyaca uygun sistem planlama, kurulum ve teknik destek.
+          </p>
+          <div class="tag"><span class="spark" aria-hidden="true"></span><span id="c2tag">Güvenlik</span></div>
+        </div>
+
+        <div class="card tile">
+          <h3 id="c3t">Enerji Sistemleri</h3>
+          <p id="c3d">
+            Pil paketleme (Li-ion / LiFePO4), BMS entegrasyonu ve enerji depolama çözümleri.
+            Güneş paneli kurulumu ile yenilenebilir enerjiye geçişte proje ve uygulama desteği.
+          </p>
+          <div class="tag"><span class="spark" aria-hidden="true"></span><span id="c3tag">Enerji</span></div>
+        </div>
+
+        <div class="card tile">
+          <h3 id="c4t">AR-GE Projelerimiz</h3>
+          <p id="c4d">
+            Yeni nesil jeneratör sistemleri ve insansız kara aracı sistemleri gibi büyük projelerde
+            tasarım, prototipleme ve test süreçlerini yürütüyoruz.
+          </p>
+          <div class="tag"><span class="spark" aria-hidden="true"></span><span id="c4tag">AR-GE</span></div>
+        </div>
+      </div>
+
+      <div class="ctaRow" style="margin-top:14px">
+        <a class="btn primary" href="#" id="openServicesFromIndex" onclick="document.getElementById('servicesBtn').click(); return false;">
+          Tüm Hizmetleri Aç
+        </a>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="sectionHead">
+        <h2 id="aboutTitle">Hakkımızda</h2>
+      </div>
+
+      <div class="card tile">
+        <h3 id="aboutH">Ediz — Tek çatı, üç alan</h3>
+        <p class="muted" id="aboutP" style="margin:0">
+          Ediz; <b>Teknoloji</b>, <b>Design</b> ve <b>EdizLab</b> projelerini aynı çatı altında birleştirir.
+          Ediz Teknoloji tarafında hedefimiz; güvenlik, otomasyon ve enerji çözümlerini sahaya uygun şekilde planlamak,
+          kurulumunu yapmak ve sürdürülebilir destek sunmaktır. Bu site vitrin amaçlıdır.
+        </p>
+
+        <div class="ctaRow" style="margin-top:14px">
+          <a class="btn" href="#services">Hizmetleri Gör</a>
+          <a class="btn primary" href="#contact">İletişime Geç</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="section" id="process">
+      <div class="sectionHead">
+        <h2 id="processTitle">4 Adımda İlerleyelim</h2>
+      </div>
+
+      <div class="steps4">
+        <div class="card stepCard">
+          <div class="stepNum">01</div>
+          <h3 id="p1t">Keşif & İhtiyaç Analizi</h3>
+          <p id="p1d">Alan, hedef ve kapsamı netleştiriyoruz. Uygun çözümü ve planı çıkarıyoruz.</p>
+        </div>
+
+        <div class="card stepCard">
+          <div class="stepNum">02</div>
+          <h3 id="p2t">Planlama & Tasarım</h3>
+          <p id="p2d">İş planını ve teknik detayları netleştiriyor, onay sonrası üretime/kuruluma geçiyoruz.</p>
+        </div>
+
+        <div class="card stepCard">
+          <div class="stepNum">03</div>
+          <h3 id="p3t">Uygulama</h3>
+          <p id="p3d">Kurulum/üretim süreçlerini tamamlıyor, test ederek teslim ediyoruz.</p>
+        </div>
+
+        <div class="card stepCard">
+          <div class="stepNum">04</div>
+          <h3 id="p4t">Teslim & Destek</h3>
+          <p id="p4d">Teslim sonrası destek, bakım ve gerektiğinde geliştirme desteği sağlıyoruz.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="sectionHead">
+        <h2 id="faqTitle">SSS</h2>
+      </div>
+
+      <div class="faq">
+        <div class="faqItem" data-faq>
+          <div class="faqQ" id="f1q">Fiyatlandırma nasıl oluyor? <span>+</span></div>
+          <div class="faqA" id="f1a">Kapsamı netleştirdikten sonra teklif hazırlıyoruz. Projeye göre tek seferlik veya aşamalı ilerleyebiliyoruz.</div>
+        </div>
+        <div class="faqItem" data-faq>
+          <div class="faqQ" id="f2q">Süreç ne kadar sürer? <span>+</span></div>
+          <div class="faqA" id="f2a">İşin büyüklüğüne göre değişir. İlk görüşme sonrası ortalama süreyi net şekilde paylaşıyoruz.</div>
+        </div>
+        <div class="faqItem" data-faq>
+          <div class="faqQ" id="f3q">Satış/teslim sonrası destek var mı? <span>+</span></div>
+          <div class="faqA" id="f3a">Evet. Teslim sonrası teknik destek, bakım ve gerektiğinde geliştirme desteği sağlıyoruz.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section" id="contact">
+      <div class="sectionHead">
+        <h2>İletişim</h2>
+      </div>
+
+      <div class="contactGrid">
+        <div class="card tile">
+          <h3>Hızlı İletişim</h3>
+
+          <div class="iconRow">
+            <a class="iconBtn" id="mailLink" href="mailto:info@ediztech.com
+">
+              <img src="./logo/gmail.png" class="icoImg" alt="E-posta">
+              E-posta
+            </a>
+
+            <a class="iconBtn" id="waLink" href="https://wa.me/+905439166010" target="_blank" rel="noreferrer">
+              <img src="./logo/social.png" class="icoImg" alt="WhatsApp">
+              WhatsApp
+            </a>
+
+            <a class="iconBtn" id="igLink" href="https://www.instagram.com/edizenerji?igsh=MW5pbGdhbnZsMnVyNQ==" target="_blank" rel="noreferrer">
+              <img src="./logo/instagram.png" class="icoImg" alt="Instagram">
+              Instagram
+            </a>
+
+            <a class="iconBtn" id="liLink" href="https://www.linkedin.com/company/ediztech/" target="_blank" rel="noreferrer">
+              <img src="./logo/linkedin.png" class="icoImg" alt="LinkedIn">
+              LinkedIn
+            </a>
+          </div>
+        </div>
+
+        <div class="card tile">
+          <h3>Kısa Not</h3>
+          <p class="muted">2–3 cümleyle ihtiyacı yaz, hızlı yönlendirelim.</p>
+
+          <div class="muted" style="display:grid; gap:6px">
+  <span><b>•</b> İlgili hizmet alanı (Teknoloji / Design / EdizLab)</span>
+  <span><b>•</b> Proje veya ürün detayı</span>
+  <span><b>•</b> Ölçü / adet bilgisi (varsa)</span>
+  <span><b>•</b> Planlanan teslim süresi</span>
+</div>
+
+          <div class="ctaRow" style="margin-top:14px">
+            <a class="btn primary"
+               href="mailto:info@ediztech.com?subject=Ediz%20-%20Teklif%20Talebi&body=Merhaba%2C%0A%0AAlan%3A%20...%0AHizmet%3A%20...%0AÖlçü%2FAdet%3A%20...%0Aİhtiyaç%3A%20...%0ATarih%3A%20...%0A%0ATeşekkürler.">
+              Mail Hazırla
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <span>© <span id="year"></span> Ediz</span>
+      <span></span>
+    </footer>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
