@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ediz Teknoloji — Projelerimiz</title>
-  <meta name="description" content="Ediz Teknoloji — proje çalışmaları (yakında yayınlanacak)." />
+  <title>Ediz Teknoloji — Ürünler</title>
+  <meta name="description" content="Ediz Teknoloji — ürünler (yakında)." />
   <link rel="stylesheet" href="../styles.css" />
 </head>
 
@@ -28,31 +28,64 @@
           <button class="catTab" role="tab" aria-selected="false" data-theme="lab">EdizLab</button>
         </div>
         <a class="btn primary" href="../index.html#contact">İletişime Geç</a>
+        <button class="menuBtn" id="menuBtn" aria-label="Menüyü Aç" aria-expanded="false" type="button">
+  <span class="hb"><i></i></span>
+</button>
+
       </div>
     </div>
   </div>
+<!-- ✅ MOBİL OVERLAY + PANEL -->
+<div class="mOverlay" id="mOverlay" aria-hidden="true"></div>
+
+<aside class="mPanel" id="mPanel" aria-hidden="true" aria-label="Mobil Menü">
+  <div class="mHead">
+    <div class="mTitle">Menü</div>
+    <button class="mClose" id="mClose" type="button" aria-label="Kapat">✕</button>
+  </div>
+
+  <div class="mCats" role="tablist" aria-label="Kategoriler (Mobil)">
+    <button class="catTab mCat" role="tab" aria-selected="true" data-theme="tech">Ediz Teknoloji</button>
+    <button class="catTab mCat" role="tab" aria-selected="false" data-theme="design">Ediz Design</button>
+    <button class="catTab mCat" role="tab" aria-selected="false" data-theme="lab">EdizLab</button>
+  </div>
+
+  <div class="mNav">
+    <a class="mLink" href="../index.html#about">Hakkımızda</a>
+
+    <button class="mAccBtn" id="mServicesBtn" type="button" aria-expanded="false">
+      Hizmetler <span class="mAccIcon" aria-hidden="true"></span>
+    </button>
+    <div class="mAccPanel" id="mServicesList" aria-hidden="true"></div>
+
+    <a class="mLink" href="../index.html#faq">SSS</a>
+    <a class="mLink" href="../index.html#contact">İletişim</a>
+  </div>
+
+  <a class="mPrimary" href="../index.html#contact">İletişime Geç</a>
+</aside>
 
   <div class="wrap">
     <section class="section">
       <div class="card pageHero tile">
         <div class="kicker">Ediz Teknoloji</div>
-        <h1>Projelerimiz</h1>
+        <h1>Ürünler</h1>
         <p>
-          Devam eden ve tamamlanan çalışmalarımızı bu sayfaya ekliyoruz.
-          Şu an vitrin yayını için altyapıyı hazırladık. En doğru proje bilgisi için bizimle iletişime geçebilirsin.
+          Ürün detaylarını ve teknik dokümanları bu sayfada paylaşacağız.
+          Şimdilik en doğru ürün yönlendirmesi için ihtiyaç bilgisini bize yaz.
         </p>
         <div class="ctaRow" style="margin-top:14px">
           <a class="btn primary" href="../index.html#contact">Bilgi Al</a>
-          <a class="btn" href="mailto:info@ediztech.com?subject=Projeler%20-%20Bilgi%20Talebi">Mail Gönder</a>
+          <a class="btn" href="mailto:info@ediztech.com?subject=Ürünler%20-%20Bilgi">Mail Gönder</a>
         </div>
       </div>
 
       <div class="pageContent">
         <div class="card tile">
-          <h3>Yakında Burada</h3>
+          <h3>Yakında Katalog</h3>
           <p class="muted" style="margin:0">
-            Proje özetleri, görseller ve süreç detayları çok yakında eklenecek.
-            Hangi alanda bilgi istediğini yazman yeterli (AR-GE / enerji / güvenlik / otomasyon).
+            Kısa süre içinde ürün kartları ve teknik içerikleri yayınlıyoruz.
+            İhtiyaç + adet + kullanım alanını yaz, hızlı dönüş yapalım.
           </p>
           <div class="ctaRow" style="margin-top:14px">
             <a class="btn primary" href="../index.html#contact">İletişim</a>
