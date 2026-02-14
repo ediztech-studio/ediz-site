@@ -56,7 +56,7 @@ function setTheme(key){
   const logoEl = document.getElementById('brandLogo');
   if (logoEl){
     logoEl.src = isPage() ? t.logo.page : t.logo.root;
-    logoEl.alt = key === 'tech' ? 'Ediz Teknoloji' : key === 'design' ? 'Ediz Design' : 'EdizLab';
+    logoEl.alt = key === 'tech' ? 'Ediz Teknoloji' : key === 'design' ? 'Ediz Design' : 'Ediz Lab';
   }
 
   // hem desktop hem mobil tablar
@@ -206,7 +206,7 @@ function applyIndexCopy(key){
     },
 
     lab: {
-      kicker: 'EdizLab',
+      kicker: 'Ediz Lab',
       headline: 'STEM Eğitim Kitleri ile Yaparak Öğrenme',
       lead: 'Çocukların mühendislik dünyasıyla erken tanışmasını sağlayan; el becerisi, problem çözme ve üretme alışkanlığı kazandıran kitler geliştiriyoruz. Okullar ve atölyeler için anlaşılır yönergeli, modüler setler hazırlıyoruz.',
       pills: ['STEM', 'Motor Beceri', 'ESP32 & IoT', 'MDF Montaj', 'Okul/Atölye'],
@@ -216,7 +216,7 @@ function applyIndexCopy(key){
         ['Yenilenebilir Enerji Eğitim Setleri','Güneş ve rüzgar temalı setlerle enerji dönüşümü, üretim ve ölçüm kavramları deneyle öğrenilir. Sürdürülebilirlik bilinci kazandırır.','Enerji'],
         ['MDF STEM Maket & Okul Deney Setleri','MDF montajlı maketler ince motor beceriyi destekler. Okullar için düzenli, dayanıklı ve sınıf kullanımına uygun deney setleri sunar.','Okul'],
       ],
-      processTitle: '4 Adımda EdizLab Süreci',
+      processTitle: '4 Adımda Ediz Lab Süreci',
       process: [
         ['Yaş Grubu & Kazanım', 'Hedef yaş aralığını ve kazanımları netleştiriyoruz (motor beceri, temel elektronik, IoT, enerji).'],
         ['İçerik & Kit Tasarımı', 'Malzeme listesi, yönerge ve uygulama akışı hazırlanır. Modüler ve anlaşılır yapı kurulur.'],
