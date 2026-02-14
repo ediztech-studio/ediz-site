@@ -37,6 +37,16 @@ function getCss(name){
 function isPage(){
   return window.location.pathname.includes('/pages/') || window.location.href.includes('/pages/');
 }
+function setText(id, v){
+  const el = document.getElementById(id);
+  if (el) el.textContent = v;
+}
+function setYear(){
+  const y = document.getElementById('year');
+  if (y) y.textContent = new Date().getFullYear();
+}
+
+// -------------------- THEME --------------------
 function setTheme(key){
   const t = THEMES[key];
 
@@ -49,12 +59,14 @@ function setTheme(key){
     logoEl.alt = key === 'tech' ? 'Ediz Teknoloji' : key === 'design' ? 'Ediz Design' : 'EdizLab';
   }
 
+  // hem desktop hem mobil tablar
   document.querySelectorAll('.catTab').forEach(btn=>{
     const active = btn.dataset.theme === key;
     btn.setAttribute('aria-selected', active ? 'true' : 'false');
   });
 
   buildServicesDropdown(key);
+  buildMobileServices(key);
 }
 
 function buildServicesDropdown(key){
@@ -73,67 +85,72 @@ function buildServicesDropdown(key){
   });
 }
 
+function buildMobileServices(key){
+  const listEl = document.getElementById('mServicesList');
+  if (!listEl) return;
+
+  listEl.innerHTML = '';
+  const list = SERVICES[key] || [];
+
+  list.forEach(item=>{
+    const a = document.createElement('a');
+    a.className = 'mSvcItem';
+    a.href = isPage() ? item.hrefPage : item.hrefRoot;
+    a.innerHTML = `<span>${item.label}</span><span class="mSvcArrow">→</span>`;
+    a.addEventListener('click', ()=> closeMobilePanel());
+    listEl.appendChild(a);
+  });
+}
+
+// -------------------- DESKTOP DROPDOWN --------------------
 function closeDropdown(){
   document.querySelectorAll('.dd').forEach(d=>d.classList.remove('open'));
 }
 
-function setYear(){
-  const y = document.getElementById('year');
-  if (y) y.textContent = new Date().getFullYear();
+// -------------------- MOBILE PANEL --------------------
+function openMobilePanel(){
+  const p = document.getElementById('mPanel');
+  const o = document.getElementById('mOverlay');
+  const b = document.getElementById('menuBtn');
+  if (!p || !o || !b) return;
+
+  p.classList.add('open');
+  o.classList.add('open');
+  b.setAttribute('aria-expanded', 'true');
+  p.setAttribute('aria-hidden', 'false');
+  o.setAttribute('aria-hidden', 'false');
+  closeDropdown();
+}
+function closeMobilePanel(){
+  const p = document.getElementById('mPanel');
+  const o = document.getElementById('mOverlay');
+  const b = document.getElementById('menuBtn');
+  if (!p || !o || !b) return;
+
+  p.classList.remove('open');
+  o.classList.remove('open');
+  b.setAttribute('aria-expanded', 'false');
+  p.setAttribute('aria-hidden', 'true');
+  o.setAttribute('aria-hidden', 'true');
 }
 
-function setText(id, v){
-  const el = document.getElementById(id);
-  if (el) el.textContent = v;
+// mobil hizmetler accordion
+function toggleMobileServices(){
+  const btn = document.getElementById('mServicesBtn');
+  const panel = document.getElementById('mServicesList');
+  if (!btn || !panel) return;
+
+  const open = btn.getAttribute('aria-expanded') === 'true';
+  btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+
+  if (open){
+    panel.classList.remove('open');
+    panel.setAttribute('aria-hidden','true');
+  }else{
+    panel.classList.add('open');
+    panel.setAttribute('aria-hidden','false');
+  }
 }
-
-// -------------------- INIT --------------------
-(function init(){
-  setYear();
-
-  // dropdown toggle
-  const dd = document.querySelector('.dd');
-  const ddBtn = document.getElementById('servicesBtn');
-  if (dd && ddBtn){
-    ddBtn.addEventListener('click', (e)=>{
-      e.preventDefault();
-      dd.classList.toggle('open');
-    });
-    document.addEventListener('click', (e)=>{
-      if (!dd.contains(e.target)) closeDropdown();
-    });
-    document.addEventListener('keydown', (e)=>{
-      if (e.key === 'Escape') closeDropdown();
-    });
-  }
-
-  // category tabs
-  const tabs = [...document.querySelectorAll('.catTab')];
-  tabs.forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      const key = btn.dataset.theme;
-      setTheme(key);
-      if (!isPage()){
-        applyIndexCopy(key);
-      }
-      closeDropdown();
-    });
-  });
-
-  const initial = document.body.dataset.theme || 'tech';
-  setTheme(initial);
-
-  if (!isPage()){
-    applyIndexCopy(initial);
-  }
-
-  // FAQ toggle
-  document.querySelectorAll('[data-faq]').forEach(item=>{
-    item.addEventListener('click', ()=>{
-      item.classList.toggle('open');
-    });
-  });
-})();
 
 // -------------------- INDEX CONTENT --------------------
 function applyIndexCopy(key){
@@ -144,26 +161,10 @@ function applyIndexCopy(key){
       lead: 'Yaşam alanlarını daha güvenli, daha verimli ve daha sürdürülebilir hale getiriyoruz. Akıllı ev otomasyonundan güvenlik sistemlerine, pil paketlemeden güneş paneli kurulumuna kadar uçtan uca kurulum ve destek sunuyoruz.',
       pills: ['Profesyonel Ekip', 'Hızlı & Güvenilir', 'Yerli Üretim', 'Teknik Destek', 'Çevre Dostu'],
       cards: [
-        [
-          'Akıllı Ev Otomasyon Sistemleri',
-          'Aydınlatma, enerji kontrolü ve otomasyon senaryoları ile yaşam alanlarınızı akıllandırıyoruz. Uzaktan kontrol, zamanlama ve sahaya uygun kurulum desteği.',
-          'Akıllı Ev'
-        ],
-        [
-          'Güvenlik Sistemleri',
-          'IP kamera, kayıt ve uzaktan izleme altyapılarıyla ev ve iş yerleri için güvenlik çözümleri. İhtiyaca uygun sistem planlama, kurulum ve teknik destek.',
-          'Güvenlik'
-        ],
-        [
-          'Enerji Sistemleri',
-          'Pil paketleme (Li-ion / LiFePO4), BMS entegrasyonu ve enerji depolama çözümleri. Güneş paneli kurulumu ile yenilenebilir enerjiye geçişte proje ve uygulama desteği.',
-          'Enerji'
-        ],
-        [
-          'AR-GE Projelerimiz',
-          'Yeni nesil jeneratör sistemleri ve insansız kara aracı sistemleri gibi büyük projelerde tasarım, prototipleme ve test süreçlerini yürütüyoruz.',
-          'AR-GE'
-        ],
+        ['Akıllı Ev Otomasyon Sistemleri','Aydınlatma, enerji kontrolü ve otomasyon senaryoları ile yaşam alanlarınızı akıllandırıyoruz. Uzaktan kontrol, zamanlama ve sahaya uygun kurulum desteği.','Akıllı Ev'],
+        ['Güvenlik Sistemleri','IP kamera, kayıt ve uzaktan izleme altyapılarıyla ev ve iş yerleri için güvenlik çözümleri. İhtiyaca uygun sistem planlama, kurulum ve teknik destek.','Güvenlik'],
+        ['Enerji Sistemleri','Pil paketleme (Li-ion / LiFePO4), BMS entegrasyonu ve enerji depolama çözümleri. Güneş paneli kurulumu ile yenilenebilir enerjiye geçişte proje ve uygulama desteği.','Enerji'],
+        ['AR-GE Projelerimiz','Yeni nesil jeneratör sistemleri ve insansız kara aracı sistemleri gibi büyük projelerde tasarım, prototipleme ve test süreçlerini yürütüyoruz.','AR-GE'],
       ],
       processTitle: '4 Adımda İlerleyelim',
       process: [
@@ -172,8 +173,6 @@ function applyIndexCopy(key){
         ['Kurulum & Devreye Alma', 'Sistemi kuruyor, test ediyor ve devreye alıyoruz. Senaryoları ayarlıyoruz.'],
         ['Destek & Sürdürülebilirlik', 'Satış sonrası teknik destek, bakım ve gerektiğinde geliştirme desteği sağlıyoruz.'],
       ],
-
-      // ✅ GÜNCEL TECH SSS
       faq: [
         ['Fiyatlandırma nasıl belirleniyor?', 'Keşif ve kapsam netleştirildikten sonra; kullanılacak ekipman, işçilik ve saha koşullarına göre teklif hazırlanır.'],
         ['Keşif hizmeti sağlıyor musunuz?', 'Evet. Gerekli durumlarda yerinde keşif yaparak en doğru sistem planlamasını gerçekleştiriyoruz.'],
@@ -184,31 +183,13 @@ function applyIndexCopy(key){
     design: {
       kicker: 'Ediz Design',
       headline: 'Lazer • CNC • 3D Baskı ile Özel Tasarım Üretim',
-      lead:
-        'İslami işlemeli tablolar, ışıklı tablolar, duvar aydınlatmaları, MDF oyun setleri ve fason üretim. ' +
-        'Fikir → tasarım → üretim → teslim sürecini tek noktadan yönetiyoruz.',
+      lead: 'İslami işlemeli tablolar, ışıklı tablolar, duvar aydınlatmaları, MDF oyun setleri ve fason üretim. Fikir → tasarım → üretim → teslim sürecini tek noktadan yönetiyoruz.',
       pills: ['Lazer Kesim', 'CNC Router', '3D Baskı', 'Işıklı Ürünler', 'Fason Üretim'],
       cards: [
-        [
-          'İslami İşlemeli Tablolar',
-          'Kişiye özel ölçü ve tasarımla; MDF/pleksi üzerine işleme. Ev, ofis ve hediye için şık seçenekler.',
-          'Tablo'
-        ],
-        [
-          'Oyun Ürünleri (Tavla • Satranç • vb.)',
-          'MDF işleme ile her türlü oyun seti: tavla, satranç, özel kutu/kapak tasarımları ve kişiselleştirme.',
-          'Oyun'
-        ],
-        [
-          'Duvar Aydınlatmaları • Işıklı Tablolar',
-          'LED detaylı duvar dekorları ve ışıklı tablolar. Mekâna göre boyutlandırma ve ambiyans tasarımı.',
-          'LED'
-        ],
-        [
-          'Lazer/CNC/3D Baskı Fason Üretim',
-          'Toplu veya butik üretim: lazer kesim, CNC router ve 3D baskı. Markanıza özel üretim ve parça çözümü.',
-          'Fason'
-        ],
+        ['İslami İşlemeli Tablolar','Kişiye özel ölçü ve tasarımla; MDF/pleksi üzerine işleme. Ev, ofis ve hediye için şık seçenekler.','Tablo'],
+        ['Oyun Ürünleri (Tavla • Satranç • vb.)','MDF işleme ile her türlü oyun seti: tavla, satranç, özel kutu/kapak tasarımları ve kişiselleştirme.','Oyun'],
+        ['Duvar Aydınlatmaları • Işıklı Tablolar','LED detaylı duvar dekorları ve ışıklı tablolar. Mekâna göre boyutlandırma ve ambiyans tasarımı.','LED'],
+        ['Lazer/CNC/3D Baskı Fason Üretim','Toplu veya butik üretim: lazer kesim, CNC router ve 3D baskı. Markanıza özel üretim ve parça çözümü.','Fason'],
       ],
       processTitle: '4 Adımda Üretim Süreci',
       process: [
@@ -217,8 +198,6 @@ function applyIndexCopy(key){
         ['Üretim', 'Kesim/işleme/baskı süreçleri uygulanır. Detay temizliği ve montaj (varsa) tamamlanır.'],
         ['Teslim & Destek', 'Paketleme ve teslim yapılır. Gerekirse montaj/kurulum yönlendirmesi sağlanır.'],
       ],
-
-      // ✅ GÜNCEL DESIGN SSS
       faq: [
         ['Özel ölçü ve kişiye özel üretim yapıyor musunuz?', 'Evet. Ürünler ölçü, malzeme ve tasarım detaylarına göre özel olarak hazırlanır.'],
         ['Üretim süresi ne kadar?', 'Süre; ürün tipi, adet ve tasarım onayına göre değişir. Onay sonrası planlanan teslim süresini net olarak paylaşırız.'],
@@ -226,34 +205,16 @@ function applyIndexCopy(key){
       ]
     },
 
-    // ✅ GÜNCELLENEN LAB KISMI
     lab: {
       kicker: 'EdizLab',
       headline: 'STEM Eğitim Kitleri ile Yaparak Öğrenme',
-      lead:
-        'Çocukların mühendislik dünyasıyla erken tanışmasını sağlayan; el becerisi, problem çözme ve üretme alışkanlığı kazandıran kitler geliştiriyoruz. Okullar ve atölyeler için anlaşılır yönergeli, modüler setler hazırlıyoruz.',
+      lead: 'Çocukların mühendislik dünyasıyla erken tanışmasını sağlayan; el becerisi, problem çözme ve üretme alışkanlığı kazandıran kitler geliştiriyoruz. Okullar ve atölyeler için anlaşılır yönergeli, modüler setler hazırlıyoruz.',
       pills: ['STEM', 'Motor Beceri', 'ESP32 & IoT', 'MDF Montaj', 'Okul/Atölye'],
       cards: [
-        [
-          'Akıllı Ev (Smart Home) Kitleri',
-          'Sensörler ve senaryolarla çocuklar kendi akıllı ev sistemini kurar. Yaparak öğrenme ile mantık kurma ve üretme alışkanlığı gelişir.',
-          'Smart Home'
-        ],
-        [
-          'IoT ve ESP32 Proje Kitleri',
-          'ESP32 tabanlı modüllerle bağlantı, sensör okuma ve otomasyon mantığını öğretir. Gerçek proje akışıyla mühendisliğe giriş sağlar.',
-          'ESP32'
-        ],
-        [
-          'Yenilenebilir Enerji Eğitim Setleri',
-          'Güneş ve rüzgar temalı setlerle enerji dönüşümü, üretim ve ölçüm kavramları deneyle öğrenilir. Sürdürülebilirlik bilinci kazandırır.',
-          'Enerji'
-        ],
-        [
-          'MDF STEM Maket & Okul Deney Setleri',
-          'MDF montajlı maketler ince motor beceriyi destekler. Okullar için düzenli, dayanıklı ve sınıf kullanımına uygun deney setleri sunar.',
-          'Okul'
-        ],
+        ['Akıllı Ev (Smart Home) Kitleri','Sensörler ve senaryolarla çocuklar kendi akıllı ev sistemini kurar. Yaparak öğrenme ile mantık kurma ve üretme alışkanlığı gelişir.','Smart Home'],
+        ['IoT ve ESP32 Proje Kitleri','ESP32 tabanlı modüllerle bağlantı, sensör okuma ve otomasyon mantığını öğretir. Gerçek proje akışıyla mühendisliğe giriş sağlar.','ESP32'],
+        ['Yenilenebilir Enerji Eğitim Setleri','Güneş ve rüzgar temalı setlerle enerji dönüşümü, üretim ve ölçüm kavramları deneyle öğrenilir. Sürdürülebilirlik bilinci kazandırır.','Enerji'],
+        ['MDF STEM Maket & Okul Deney Setleri','MDF montajlı maketler ince motor beceriyi destekler. Okullar için düzenli, dayanıklı ve sınıf kullanımına uygun deney setleri sunar.','Okul'],
       ],
       processTitle: '4 Adımda EdizLab Süreci',
       process: [
@@ -262,8 +223,6 @@ function applyIndexCopy(key){
         ['Üretim & Paketleme', 'MDF parçalar, elektronik bileşenler ve güvenli paketleme tamamlanır. Sınıf düzenine uygun setlenir.'],
         ['Uygulama & Destek', 'Atölye/okul kullanımına uygun yönlendirme ve içerik desteği sağlarız. Gerekirse geliştirme yapılır.'],
       ],
-
-      // ✅ GÜNCEL LAB SSS
       faq: [
         ['Kitler hangi yaş grupları için uygundur?', 'Kit içerikleri yaş grubuna göre planlanır. Anaokulu, ilkokul, ortaokul ve lise seviyelerine uygun seçenekler sunuyoruz.'],
         ['Kitlerin temel amacı nedir?', 'Amaç; öğrencilerin el becerisi, problem çözme ve temel mühendislik mantığını yaparak öğrenmesini sağlamaktır.'],
@@ -279,7 +238,6 @@ function applyIndexCopy(key){
   setText('headline', c.headline);
   setText('lead', c.lead);
 
-  // pills
   const pillsEl = document.getElementById('pills');
   if (pillsEl){
     pillsEl.innerHTML = '';
@@ -291,13 +249,11 @@ function applyIndexCopy(key){
     });
   }
 
-  // 4 cards
   setText('c1t', c.cards[0][0]); setText('c1d', c.cards[0][1]); setText('c1tag', c.cards[0][2]);
   setText('c2t', c.cards[1][0]); setText('c2d', c.cards[1][1]); setText('c2tag', c.cards[1][2]);
   setText('c3t', c.cards[2][0]); setText('c3d', c.cards[2][1]); setText('c3tag', c.cards[2][2]);
   setText('c4t', c.cards[3][0]); setText('c4d', c.cards[3][1]); setText('c4tag', c.cards[3][2]);
 
-  // process
   if (c.processTitle) setText('processTitle', c.processTitle);
   if (c.process && c.process.length >= 4){
     setText('p1t', c.process[0][0]); setText('p1d', c.process[0][1]);
@@ -306,10 +262,126 @@ function applyIndexCopy(key){
     setText('p4t', c.process[3][0]); setText('p4d', c.process[3][1]);
   }
 
-  // faq
   if (c.faq && c.faq.length >= 3){
     setText('f1q', c.faq[0][0]); setText('f1a', c.faq[0][1]);
     setText('f2q', c.faq[1][0]); setText('f2a', c.faq[1][1]);
     setText('f3q', c.faq[2][0]); setText('f3a', c.faq[2][1]);
+  }
+}
+
+// -------------------- INIT --------------------
+(function init(){
+  setYear();
+
+  // desktop dropdown
+  const dd = document.querySelector('.dd');
+  const ddBtn = document.getElementById('servicesBtn');
+  if (dd && ddBtn){
+    ddBtn.addEventListener('click', (e)=>{
+      e.preventDefault();
+      dd.classList.toggle('open');
+    });
+    document.addEventListener('click', (e)=>{
+      if (!dd.contains(e.target)) closeDropdown();
+    });
+    document.addEventListener('keydown', (e)=>{
+      if (e.key === 'Escape') closeDropdown();
+    });
+  }
+
+  // mobile panel
+  const menuBtn = document.getElementById('menuBtn');
+  const overlay = document.getElementById('mOverlay');
+  const closeBtn = document.getElementById('mClose');
+
+  if (menuBtn) menuBtn.addEventListener('click', ()=>{
+    const open = menuBtn.getAttribute('aria-expanded') === 'true';
+    if (open) closeMobilePanel();
+    else openMobilePanel();
+  });
+
+  if (overlay) overlay.addEventListener('click', closeMobilePanel);
+  if (closeBtn) closeBtn.addEventListener('click', closeMobilePanel);
+
+  document.addEventListener('keydown', (e)=>{
+    if (e.key === 'Escape') closeMobilePanel();
+  });
+
+  const mServicesBtn = document.getElementById('mServicesBtn');
+  if (mServicesBtn){
+    mServicesBtn.addEventListener('click', toggleMobileServices);
+  }
+
+  // category tabs (desktop + mobile)
+  document.querySelectorAll('.catTab').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const key = btn.dataset.theme;
+      setTheme(key);
+      if (!isPage()) applyIndexCopy(key);
+      closeDropdown();
+    });
+  });
+
+  // close mobile on link click
+  document.querySelectorAll('.mLink, .mPrimary').forEach(a=>{
+    a.addEventListener('click', ()=> closeMobilePanel());
+  });
+
+  const initial = document.body.dataset.theme || 'tech';
+  setTheme(initial);
+  if (!isPage()) applyIndexCopy(initial);
+
+  // FAQ toggle
+  document.querySelectorAll('[data-faq]').forEach(item=>{
+    item.addEventListener('click', ()=> item.classList.toggle('open'));
+  });
+})();
+
+// -------------------- DESKTOP DROPDOWN --------------------
+function closeDropdown(){
+  document.querySelectorAll('.dd').forEach(d=>d.classList.remove('open'));
+}
+
+// -------------------- MOBILE PANEL --------------------
+function openMobilePanel(){
+  const p = document.getElementById('mPanel');
+  const o = document.getElementById('mOverlay');
+  const b = document.getElementById('menuBtn');
+  if (!p || !o || !b) return;
+
+  p.classList.add('open');
+  o.classList.add('open');
+  b.setAttribute('aria-expanded', 'true');
+  p.setAttribute('aria-hidden', 'false');
+  o.setAttribute('aria-hidden', 'false');
+  closeDropdown();
+}
+function closeMobilePanel(){
+  const p = document.getElementById('mPanel');
+  const o = document.getElementById('mOverlay');
+  const b = document.getElementById('menuBtn');
+  if (!p || !o || !b) return;
+
+  p.classList.remove('open');
+  o.classList.remove('open');
+  b.setAttribute('aria-expanded', 'false');
+  p.setAttribute('aria-hidden', 'true');
+  o.setAttribute('aria-hidden', 'true');
+}
+
+function toggleMobileServices(){
+  const btn = document.getElementById('mServicesBtn');
+  const panel = document.getElementById('mServicesList');
+  if (!btn || !panel) return;
+
+  const open = btn.getAttribute('aria-expanded') === 'true';
+  btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+
+  if (open){
+    panel.classList.remove('open');
+    panel.setAttribute('aria-hidden','true');
+  }else{
+    panel.classList.add('open');
+    panel.setAttribute('aria-hidden','false');
   }
 }
