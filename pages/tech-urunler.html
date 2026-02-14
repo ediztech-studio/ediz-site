@@ -28,9 +28,42 @@
           <button class="catTab" role="tab" aria-selected="false" data-theme="lab">EdizLab</button>
         </div>
         <a class="btn primary" href="../index.html#contact">İletişime Geç</a>
+        <button class="menuBtn" id="menuBtn" aria-label="Menüyü Aç" aria-expanded="false" type="button">
+  <span class="hb"><i></i></span>
+</button>
+
       </div>
     </div>
   </div>
+<!-- ✅ MOBİL OVERLAY + PANEL -->
+<div class="mOverlay" id="mOverlay" aria-hidden="true"></div>
+
+<aside class="mPanel" id="mPanel" aria-hidden="true" aria-label="Mobil Menü">
+  <div class="mHead">
+    <div class="mTitle">Menü</div>
+    <button class="mClose" id="mClose" type="button" aria-label="Kapat">✕</button>
+  </div>
+
+  <div class="mCats" role="tablist" aria-label="Kategoriler (Mobil)">
+    <button class="catTab mCat" role="tab" aria-selected="true" data-theme="tech">Ediz Teknoloji</button>
+    <button class="catTab mCat" role="tab" aria-selected="false" data-theme="design">Ediz Design</button>
+    <button class="catTab mCat" role="tab" aria-selected="false" data-theme="lab">EdizLab</button>
+  </div>
+
+  <div class="mNav">
+    <a class="mLink" href="../index.html#about">Hakkımızda</a>
+
+    <button class="mAccBtn" id="mServicesBtn" type="button" aria-expanded="false">
+      Hizmetler <span class="mAccIcon" aria-hidden="true"></span>
+    </button>
+    <div class="mAccPanel" id="mServicesList" aria-hidden="true"></div>
+
+    <a class="mLink" href="../index.html#faq">SSS</a>
+    <a class="mLink" href="../index.html#contact">İletişim</a>
+  </div>
+
+  <a class="mPrimary" href="../index.html#contact">İletişime Geç</a>
+</aside>
 
   <div class="wrap">
     <section class="section">
