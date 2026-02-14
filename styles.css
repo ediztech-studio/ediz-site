@@ -607,5 +607,5 @@ footer{
   .steps4{ grid-template-columns: 1fr; }
   .hero h1{ font-size: 34px; }
   .catTabs{ display:none; }
-  .brandLogo{ height: 44px; }
+  .brandLogo{ height: 70px; }
 }
