@@ -67,7 +67,7 @@ img{ max-width: 100%; display:block; }
 
 /* Logo büyür, topbar boyutu değişmez */
 .brandLogo{
-  height: 180px;
+  height: 100px;
   width: auto;
   object-fit: contain;
 }
