@@ -161,7 +161,7 @@ function applyIndexCopy(key){
       lead: 'Yaşam alanlarını daha güvenli, daha verimli ve daha sürdürülebilir hale getiriyoruz. Akıllı ev otomasyonundan güvenlik sistemlerine, pil paketlemeden güneş paneli kurulumuna kadar uçtan uca kurulum ve destek sunuyoruz.',
       pills: ['Profesyonel Ekip', 'Hızlı & Güvenilir', 'Yerli Üretim', 'Teknik Destek', 'Çevre Dostu'],
       cards: [
-        ['Akıllı Ev Otomasyon Sistemleri','Aydınlatma, enerji kontrolü ve otomasyon senaryoları ile yaşam alanlarınızı akıllandırıyoruz. Uzaktan kontrol, zamanlama ve sahaya uygun kurulum desteği.','Akıllı Ev'],
+        ['Akıllı Otomasyon Sistemleri','Aydınlatma, enerji kontrolü ve otomasyon senaryoları ile yaşam alanlarınızı akıllandırıyoruz. Uzaktan kontrol, zamanlama ve sahaya uygun kurulum desteği.','Akıllı Ev'],
         ['Güvenlik Sistemleri','IP kamera, kayıt ve uzaktan izleme altyapılarıyla ev ve iş yerleri için güvenlik çözümleri. İhtiyaca uygun sistem planlama, kurulum ve teknik destek.','Güvenlik'],
         ['Enerji Sistemleri','Pil paketleme (Li-ion / LiFePO4), BMS entegrasyonu ve enerji depolama çözümleri. Güneş paneli kurulumu ile yenilenebilir enerjiye geçişte proje ve uygulama desteği.','Enerji'],
         ['AR-GE Projelerimiz','Yeni nesil jeneratör sistemleri ve insansız kara aracı sistemleri gibi büyük projelerde tasarım, prototipleme ve test süreçlerini yürütüyoruz.','AR-GE'],
